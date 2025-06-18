@@ -4,7 +4,7 @@
 #include "encode.h"
 #include "types.h"
 
-// Function to calculate BMP image size
+
 uint get_image_size_for_bmp(FILE *fptr_image)
 {
     uint width, height;
@@ -18,7 +18,7 @@ uint get_image_size_for_bmp(FILE *fptr_image)
     return width * height * 3;
 }
 
-// Function to open input/output files for encoding
+
 Status open_files(EncodeInfo *encInfo)
 {
     encInfo->fptr_src_image = fopen(encInfo->src_image_fname, "r");
@@ -48,7 +48,7 @@ Status open_files(EncodeInfo *encInfo)
     return e_success;
 }
 
-// XOR-based encryption/decryption function 
+// XOR-based encryption or decryption function 
 void xor_encrypt_decrypt(char *data, int size, const char *password)
 {
     int pass_len = strlen(password);
@@ -58,7 +58,7 @@ void xor_encrypt_decrypt(char *data, int size, const char *password)
     }
 }
 
-// Decoding function with password-based decryptionss
+// Decoding function 
 void decode_message_from_image(const char *stego_image, const char *output_file)
 {
     FILE *fptr_image = fopen(stego_image, "r");

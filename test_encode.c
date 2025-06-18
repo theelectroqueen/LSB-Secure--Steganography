@@ -5,7 +5,7 @@
 #include "types.h"
 
 void decode_message_from_image(const char *stego_image, const char *output_file);
-void xor_encrypt_decrypt(char *data, int size, const char *password);  // declare here too
+void xor_encrypt_decrypt(char *data, int size, const char *password);  
 
 int main(int argc, char *argv[])
 {
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
         // Encrypt the message before embedding
         xor_encrypt_decrypt(buffer, secret_size, password);
 
-        // Copy BMP header
+        
         fseek(encInfo.fptr_src_image, 0, SEEK_SET);
         fseek(encInfo.fptr_stego_image, 0, SEEK_SET);
         char header[54];
@@ -75,12 +75,12 @@ int main(int argc, char *argv[])
             {
                 char byte;
                 fread(&byte, 1, 1, encInfo.fptr_src_image);
-                byte = (byte & 0xFE) | ((ch >> bit) & 1);  // ✅ FIXED: = instead of ==
+                byte = (byte & 0xFE) | ((ch >> bit) & 1);  
                 fwrite(&byte, 1, 1, encInfo.fptr_stego_image);
             }
         }
 
-        // Embed null terminator to mark end
+        // Embed null terminator
         char null_char = '\0';
         for (int bit = 7; bit >= 0; bit--)
         {
