@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
             fwrite(&byte, 1, 1, encInfo.fptr_stego_image);
         }
 
-        // Copy rest of the image
+       
         char ch;
         while (fread(&ch, 1, 1, encInfo.fptr_src_image))
         {
